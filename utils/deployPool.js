@@ -5,8 +5,8 @@ import Web3Modal from "web3modal";
 const bn = require("bignumber.js");
 bn.config({ EXPONENTIAL_AT: 999999, DECIMAL_PLACES: 40 });
 
-const UNISWAP_V3_FACTORY_ADDRESS = "0x2b639Cc84e1Ad3aA92D4Ee7d2755A6ABEf300D72";
-const NON_FUNGIBLE_MANAGER = "0xB468647B04bF657C9ee2de65252037d781eABafD";
+const UNISWAP_V3_FACTORY_ADDRESS = "0x52173b6ac069619c206b9A0e75609fC92860AB2A";
+const NON_FUNGIBLE_MANAGER = "0xd977422c9eE9B646f64A4C4389a6C98ad356d8C4";
 
 const artifacts = {
   UniswapV3Factory: require("@uniswap/v3-core/artifacts/contracts/UniswapV3Factory.sol/UniswapV3Factory.json"),
@@ -50,10 +50,10 @@ export const creatingPoolContract = async (
   const provider = new ethers.providers.Web3Provider(connection);
   const signer = provider.getSigner();
 
-  const createPoolContract = fetchManagerContract(signer);
+  const createPoolContract = fetchManagerContract(provider);
 
   const price = encodePriceSqrt(tokenAmount1, tokenAmount2);
-  console.log(price);
+
   const transaction = await createPoolContract
     .connect(signer)
     .createAndInitializePoolIfNecessary(address1, address2, fee, price, {
@@ -62,7 +62,7 @@ export const creatingPoolContract = async (
 
   await transaction.wait();
 
-  const factory = fetchFactoryContract(signer);
+  const factory = fetchFactoryContract(provider);
   const poolAddress = await factory.getPool(address1, address2, fee);
 
   return poolAddress;
