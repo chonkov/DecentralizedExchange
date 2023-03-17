@@ -35,5 +35,6 @@ export const IWETHABI = IWETH.abi;
 
 export const DAIAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 
-export const userStorageDataAddress = "";
+export const userStorageDataAddress =
+  "0x6B21b3ae41f818Fc91e322b53f8D0773d31eCB75";
 export const userStorageDataABI = UserStorageData.abi;

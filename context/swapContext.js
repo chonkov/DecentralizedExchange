@@ -35,12 +35,15 @@ export const SwapTokenContextProvider = ({ children }) => {
   const [getAllLiquidity, setGetAllLiquidity] = useState([]);
 
   const addToken = [
-    "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // WETH9
-    "0x6B175474E89094C44Da98b954EedeAC495271d0F", // DAI
-    "0xdAC17F958D2ee523a2206206994597C13D831ec7", // USDT
-    "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", // USDC
-    "0xB8c77482e45F1F44dE1745F52C74426C631bDD52", // BNB
-    "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0", // MATIC
+    "0x1eB5C49630E08e95Ba7f139BcF4B9BA171C9a8C7", // THREE
+    "0x6e0a5725dD4071e46356bD974E13F35DbF9ef367", // FOUR
+    "0xA9d0Fb5837f9c42c874e16da96094b14Af0e2784", // FIVE
+    // "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // WETH9
+    // "0x6B175474E89094C44Da98b954EedeAC495271d0F", // DAI
+    // "0xdAC17F958D2ee523a2206206994597C13D831ec7", // USDT
+    // "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", // USDC
+    // "0xB8c77482e45F1F44dE1745F52C74426C631bDD52", // BNB
+    // "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0", // MATIC
   ];
 
   const fetchingData = async () => {
@@ -117,7 +120,19 @@ export const SwapTokenContextProvider = ({ children }) => {
       // First a pool must be created or already
       // exist before adding liquidity
       //CREATE POOL
-      const createdPoolAddress = await creatingPoolContract(
+      console.log(
+        tokenAddress0,
+        tokenAddress1,
+        fee,
+        tokenPrice1,
+        tokenPrice2,
+        slippage,
+        deadline,
+        tokenAmmountOne,
+        tokenAmmountTwo
+      );
+
+      const poolAddress = await creatingPoolContract(
         tokenAddress0,
         tokenAddress1,
         fee,
@@ -128,7 +143,7 @@ export const SwapTokenContextProvider = ({ children }) => {
         }
       );
 
-      console.log(createdPoolAddress);
+      console.log(poolAddress);
 
       //ADD LIQUIDITY
       const data = await addLiquidityExternal(
