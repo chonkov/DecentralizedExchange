@@ -1,64 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 
 import Style from "../styles/Tokens.module.css";
 import images from "../assets";
 import { AllTokens } from "../components/index";
+import { SwapTokenContext } from "../context/swapContext";
 
 const Tokens = () => {
-  const [allTokenList, setAllTokenList] = useState([
-    {
-      number: 1,
-      image: images.etherlogo,
-      name: "Ether",
-      symbol: "ETH",
-      price: "$12,345",
-      change: "+ 234.5",
-      tvl: "$7894.5M",
-      volume: "$716.5 M",
-    },
-    {
-      number: 2,
-      image: images.etherlogo,
-      name: "USDC Coin",
-      symbol: "USDC",
-      price: "$12,345",
-      change: "+ 234.5",
-      tvl: "$7894.5M",
-      volume: "$716.5 M",
-    },
-    {
-      number: 3,
-      image: images.etherlogo,
-      name: "Wrapped BTC",
-      symbol: "WBTC",
-      price: "$12,345",
-      change: "+ 234.5",
-      tvl: "$7894.5M",
-      volume: "$716.5 M",
-    },
-    {
-      number: 4,
-      image: images.etherlogo,
-      name: "Uniswap",
-      symbol: "UNI",
-      price: "$12,345",
-      change: "+ 234.5",
-      tvl: "$7894.5M",
-      volume: "$716.5 M",
-    },
-    {
-      number: 5,
-      image: images.etherlogo,
-      name: "DAI Coin",
-      symbol: "DAI",
-      price: "$12,345",
-      change: "+ 234.5",
-      tvl: "$7894.5M",
-      volume: "$716.5 M",
-    },
-  ]);
+  const { topTokensList } = useContext(SwapTokenContext);
 
+  const [allTokenList, setAllTokenList] = useState(topTokensList);
   const [copyAllTokenList, setCopyAllTokenList] = useState(allTokenList);
   const [search, setSearch] = useState("");
   const [searchItem, setSearchItem] = useState(search);
@@ -123,7 +74,7 @@ const Tokens = () => {
           </div>
         </div>
 
-        <AllTokens allTokenList={allTokenList} />
+        <AllTokens allTokenList={topTokensList} />
       </div>
     </div>
   );
