@@ -7,10 +7,11 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
+- [Working on](#working-on)
 
 ## About The Project
 
-The Dapp is a fully functional decentralized, which is an 'Uniswap' clone and allows its users to swap tokens, create their own liquidity pools or add to those that already exist.
+The Dapp is a fully functional decentralized exchange, which is an 'Uniswap' clone and allows its users to swap tokens, create their own liquidity pools or add such to already existing ones.
 
 ### Built With
 
